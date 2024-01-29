@@ -9,6 +9,29 @@ const connectionString = 'mongodb+srv://Tumo:Tumo1234@cluster0.ek0rehr.mongodb.n
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// const { Schema } = mongoose;
+// mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+// const db = mongoose.connection;
+
+// const SchemaProduct = new Schema({
+//     productName: String,
+//     price: Number,
+//     image: String
+// });
+// const Products = mongoose.model('Products', SchemaProduct);
+// db.on('error', console.error.bind(console, 'Connection error:'));
+// db.once('open', async () => {
+//     console.log('Connected to MongoDB!');
+//     try {
+//         const accProgm = await Products.createCollection();
+
+//     } catch (error) {
+//         console.error('Error retrieving data:', error);
+//     } finally {
+//         mongoose.connection.close();
+//     }
+// });
+
 app.use(express.static('public'));
 
 app.get("/", function (req, res) {
@@ -17,7 +40,7 @@ app.get("/", function (req, res) {
     db.on('error', console.error.bind(console, 'Connection error:'));
     db.once('open', async () => {
         try {
-            let result = await mongoose.connection.db.collection('theaters').find({'location.address.city':'Bloomington'}).toArray()
+            let result = await mongoose.connection.db.collection('theaters').find({ 'location.address.city': 'Bloomington' }).toArray()
             res.render('../public/form.ejs', {
                 obj: result
             });
@@ -27,11 +50,6 @@ app.get("/", function (req, res) {
             mongoose.connection.close();
         }
     })
-    // var info = [
-    //     { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
-    //     { name: 'Tux', organization: "Linux", birth_year: 1996 },
-    //     { name: 'Moby Dock', organization: "Docker", birth_year: 2013 }
-    // ];
 });
 
 app.post('/addName', async (req, res) => {
@@ -56,6 +74,18 @@ app.post('/addName', async (req, res) => {
             mongoose.connection.close();
         }
     })
+});
+
+app.get("/delete/:id", function (req, res) {
+
+});
+
+app.get("/update/:id", function (req, res) {
+
+});
+
+app.post("/updateData/", function (req, res) {
+
 });
 
 
