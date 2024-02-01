@@ -10,26 +10,28 @@
 
     <table>
         <tr>
-            <td>ID</td>
-            <td>City</td>
+            <td>Name</td>
+            <td>Price</td>
             <td>Update</td>
             <td>Delete</td>
         </tr>
          <% obj.forEach(function(justOne) { %>
         <tr>
-            <td><%= justOne.theaterId %></td>
-            <td><%= justOne.location.address.city %></td>
-            <td><a class="update" href="update/id=<%= justOne._id %>">Update</a></td>
-            <td><a class="delete" href="delete/id=<%= justOne._id %>">Delete</a></td>
+            <td><%= justOne.name %></td>
+            <td><%= justOne.price %></td>
+            <td><a class="update" href="update/<%= justOne.uuid %>">Update</a></td>
+            <td><a class="delete" href="delete/<%= justOne.uuid %>">Delete</a></td>
         </tr>
     <% }); %>
     </table>
-    <!-- <form action="/addName" method="post"> -->
-        <input id="usName" type="text" required name="name" placeholder="Please type your name"><br><br>
-        <input id="usPassword" type="password" name="password" placeholder="Please type your Pass"><br><br>
-        <input id="usEmail" type="email" name="email" placeholder="Please type your email"><br><br>
+    <form action="/addName" method="post">
+        <input id="PrName" type="text" required name="name" placeholder="Name"><br><br>
+        <input id="PrPrice" type="number" name="price" placeholder="Price"><br><br>
+        <input id="PrImage" type="text" name="image" placeholder="Image"><br><br>
+        <input id="PrUUID" type="number" name="uuid" placeholder="UUID"><br><br>
+        <input id="PrDes" type="text" name="description" placeholder="Description"><br><br>
         <input type="submit" onclick="getVal()" >
-    <!-- </form> -->
+    </form>
 
     <script src="script.js"></script>
 </body>
