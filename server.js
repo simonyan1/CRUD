@@ -67,9 +67,7 @@ app.get("/delete/:id", function (req, res) {
     db.once('open', async () => {
         try {
             let result = await mongoose.connection.db.collection('products').deleteOne({_id: new ObjectId(id)});
-            // res.render('../public/update.ejs', {
-            //     obj: result
-            // });
+            res.json(result);
         } catch (error) {
             console.error('Error retrieving movies:', error);
         } finally {
@@ -86,9 +84,9 @@ app.get("/update/:id", function (req, res) {
     db.once('open', async () => {
         try {
             let result = await mongoose.connection.db.collection('products').findOne({_id: new ObjectId(id)});
-            // res.render('../public/update.ejs', {
-            //     obj: result
-            // });
+            res.render('../public/update.ejs', {
+                obj: result
+            });
         } catch (error) {
             console.error('Error retrieving movies:', error);
         } finally {
@@ -110,16 +108,16 @@ app.post("/updateData", function (req, res) {
     const db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'Connection error:'));
-    
+
     db.once('open', async () => {
         console.log('Connected to MongoDB!');
-        
+
         try {
             let result = await mongoose.connection.db.collection('products').updateOne(
                 { _id: new ObjectId(id) },
                 { $set: { name: name, price: price, image: image, description: des, uuid: uuid } }
             );
-            
+
             res.json(result);
         } catch (error) {
             console.error('Error updating product:', error);
