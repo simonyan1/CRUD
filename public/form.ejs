@@ -19,7 +19,7 @@
         <tr>
             <td><%= justOne.name %></td>
             <td><%= justOne.price %></td>
-            <td><a class="update" href="update/<%= justOne.uuid %>">Update</a></td>
+            <td><a class="update" href="update/<%= justOne._id %>">Update</a></td>
             <td><a class="delete" href="delete/<%= justOne.uuid %>">Delete</a></td>
         </tr>
     <% }); %>
@@ -30,6 +30,7 @@
         <input id="PrImage" type="text" name="image" placeholder="Image"><br><br>
         <input id="PrUUID" type="number" name="uuid" placeholder="UUID"><br><br>
         <input id="PrDes" type="text" name="description" placeholder="Description"><br><br>
+        <input id="id" type="hidden" name="id" ><br><br>
         <input type="submit" onclick="getVal()" >
     </form>
 
